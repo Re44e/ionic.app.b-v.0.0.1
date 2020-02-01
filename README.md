@@ -2,6 +2,4 @@
 
 Under development...
 
-Clone the project and run the following command to install the dependencies: **npm install**
 
-Run the project with the following command: **npm start**
