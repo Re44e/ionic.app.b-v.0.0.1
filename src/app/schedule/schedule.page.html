@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agenda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" class="label-header">
+    <ion-label>AGENDE UM PROCEDIMENTO</ion-label>
+  </ion-item>
+ 
+  <div class="calendar">
+    <ion-item>
+      <ionic-calendar-date-picker [dayLabels]="dayLabels" [monthLabels]="monthLabels" (onSelect)="dateSelected($event)">
+      </ionic-calendar-date-picker>
+    </ion-item>
+  </div>
+  <div class="cad">
+    <ion-item>
+      <ion-label>Paciente:</ion-label>
+      <ion-input [(ngModel)]="todo.paciente"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Procedimento:</ion-label>
+      <ion-input [(ngModel)]="todo.procedimento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Especialista:</ion-label>
+      <ion-input [(ngModel)]="todo.especialista"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Horário:</ion-label>
+      <ion-datetime [(ngModel)]="horario" display-format="HH:mm A" picker-format="HH:mm"></ion-datetime>
+    </ion-item>
+  </div>
+  <div class="cad">
+    <!-- <section class="full-width">
+      <ion-button expand="full" color="dark" [routerLink]="['/home']" (click)="saveTodo()">AGENDAR</ion-button>
+    </section> -->
+
+    <ion-fab horizontal="center" vertical="end" slot="fixed">
+      <ion-fab-button color="dark" [routerLink]="['/home']" (click)="saveTodo()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+</ion-content>

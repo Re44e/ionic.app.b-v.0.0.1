@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button ></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Agendamentos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="editar == false">
+  <div *ngIf="flagList == true">
+    <h2 style="text-align: center; font-size: medium;" >NÃO HÁ REGISTROS AGENDADOS...</h2>
+  </div>
+  <ion-list >
+    <ion-item-sliding *ngFor="let item of todos">
+      <ion-item lines="full">
+        <ion-label>
+          <h2>{{item.paciente}}<ion-icon class="icon-size-edit"(click)="editarTodo(item.id)" style="margin-left: 10px;"ios="ios-create" md="md-create"></ion-icon></h2>
+          <h3>Procedimento: {{item.procedimento}}</h3>
+          <p>Agendado: {{item.horario}} - {{item.date}}
+              <ion-icon class="icon-size-trash" style="color: black" float-right (click)="presentAlertConfirmDelete(item)" name="trash"></ion-icon>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+
+
+<ion-content *ngIf="editar == true">
+  <ion-item lines="none" class="label-header">
+    <ion-label>EDITAR REGISTRO</ion-label>
+  </ion-item>
+ 
+  <div class="calendar">
+    <ion-item lines="none">
+      <ionic-calendar-date-picker [dayLabels]="dayLabels" [monthLabels]="monthLabels" (onSelect)="dateSelected($event)">
+      </ionic-calendar-date-picker>
+    </ion-item>
+  </div>
+  <div class="cad">
+    <ion-item>
+      <ion-label>Paciente:</ion-label>
+      <ion-input [(ngModel)]="todo.paciente"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Procedimento:</ion-label>
+      <ion-input [(ngModel)]="todo.procedimento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Especialista:</ion-label>
+      <ion-input [(ngModel)]="todo.especialista"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Horário:</ion-label>
+      <ion-datetime [(ngModel)]="todo.horario" display-format="HH:mm A" picker-format="HH:mm"></ion-datetime>
+    </ion-item>
+  </div>
+  <div class="cad">
+    <div class="button-footer">
+      <ion-button shape="round" fill="outline" color="dark" (click)="saveTodo()">SALVAR ALTERAÇÕES</ion-button>
+    </div>
+    <div class="label-footer">
+      <a style="color: black" (click)="back()">VOLTAR</a>
+    </div>
+    <!-- <ion-fab horizontal="center" vertical="end" slot="fixed">
+      <ion-fab-button color="dark" [routerLink]="['/home']" (click)="saveTodo()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  </div>
+  
+
+</ion-content>
